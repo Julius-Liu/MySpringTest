@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="com.spring.demo6" />
+	<context:component-scan base-package="com.spring.demo7" />
+
+	<bean id="theAction" class="com.spring.test.UpperAction" abstract="false"
+		lazy-init="default" autowire="default">
+		<property name="message">
+			<value type="java.lang.String">Hello_</value>
+		</property>
+	</bean>
+	
+	<bean id="greetingProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interfaces" value="com.spring.api.Greeting"/>
+        <property name="target" ref="greetingImpl"/>
+        <property name="interceptorNames">
+            <list>
+                <value>greetingAroundAdvice</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="greetingProxyThrows" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interfaces" value="com.spring.api.Greeting"/>
+        <property name="target" ref="GreetingImplThrows"/>
+        <property name="interceptorNames" value="greetingThrowAdvice"/>
+    </bean>	
+
+</beans>
