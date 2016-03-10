@@ -11,6 +11,7 @@
 
 	<context:component-scan base-package="com.spring.demo6" />
 	<context:component-scan base-package="com.spring.demo7" />
+	<context:component-scan base-package="com.spring.demo8" />
 
 	<bean id="theAction" class="com.spring.test.UpperAction" abstract="false"
 		lazy-init="default" autowire="default">
@@ -31,8 +32,16 @@
 
     <bean id="greetingProxyThrows" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="interfaces" value="com.spring.api.Greeting"/>
-        <property name="target" ref="GreetingImplThrows"/>
+        <property name="target" ref="greetingImplThrows"/>
         <property name="interceptorNames" value="greetingThrowAdvice"/>
     </bean>	
+    
+    <!-- GreetingIntroAdvice Bean -->
+    <bean id="greetingProxySorry" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interfaces" value="com.spring.demo8.Apology"/>		<!-- 需要动态实现的接口 -->
+        <property name="target" ref="greetingImplSorry"/>					<!-- 目标类 -->
+        <property name="interceptorNames" value="greetingIntroAdvice"/>		<!-- 引入增强 -->
+        <property name="proxyTargetClass" value="true"/>					<!-- 代理目标类（默认为 false，代理接口） -->
+    </bean>
 
 </beans>
