@@ -9,10 +9,13 @@
 		http://www.springframework.org/schema/context
     	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.spring.demo6" />
-	<context:component-scan base-package="com.spring.demo7" />
-	<context:component-scan base-package="com.spring.demo8" />
+	<context:component-scan base-package="com.spring.demo06" />
+	<context:component-scan base-package="com.spring.demo07" />
+	<context:component-scan base-package="com.spring.demo08" />
+	<context:component-scan base-package="com.spring.demo09" />
+	<context:component-scan base-package="com.spring.demo10" />
 
+	<!-- com.spring.test -->
 	<bean id="theAction" class="com.spring.test.UpperAction" abstract="false"
 		lazy-init="default" autowire="default">
 		<property name="message">
@@ -20,28 +23,73 @@
 		</property>
 	</bean>
 	
-	<bean id="greetingProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<!-- com.spring.demo06 for Client1 -->
+	<bean id="greetingProxyClient1" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="interfaces" value="com.spring.api.Greeting"/>
         <property name="target" ref="greetingImpl"/>
         <property name="interceptorNames">
+            <list>
+                <value>greetingBeforeAdvice</value>
+                <value>greetingAfterAdvice</value>
+            </list>
+        </property>
+    </bean>
+	
+	<!-- com.spring.demo06 for Client2 -->
+	<bean id="greetingProxyClient2" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interfaces" value="com.spring.api.Greeting"/>
+        <property name="target" ref="greetingImpl"/>
+        <property name="interceptorNames">
+            <list>
+                <value>greetingBeforeAndAfterAdvice</value>
+            </list>
+        </property>
+    </bean>
+	
+	<!-- com.spring.demo06 for Client3 -->
+	<bean id="greetingProxyClient3" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interfaces" value="com.spring.api.Greeting"/>	<!-- 需要代理的接口 -->
+        <property name="target" ref="greetingImpl"/>					<!-- 接口实现类 -->
+        <property name="interceptorNames">								<!-- 拦截器名称（也就是增强类名称，Spring Bean 的 id） -->
             <list>
                 <value>greetingAroundAdvice</value>
             </list>
         </property>
     </bean>
 
+	<!-- com.spring.demo07 -->
     <bean id="greetingProxyThrows" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="interfaces" value="com.spring.api.Greeting"/>
         <property name="target" ref="greetingImplThrows"/>
         <property name="interceptorNames" value="greetingThrowAdvice"/>
     </bean>	
     
-    <!-- GreetingIntroAdvice Bean -->
+    <!-- com.spring.demo08 -->
     <bean id="greetingProxySorry" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="interfaces" value="com.spring.demo8.Apology"/>		<!-- 需要动态实现的接口 -->
+        <property name="interfaces" value="com.spring.demo08.Apology"/>		<!-- 需要动态实现的接口 -->
         <property name="target" ref="greetingImplSorry"/>					<!-- 目标类 -->
         <property name="interceptorNames" value="greetingIntroAdvice"/>		<!-- 引入增强 -->
         <property name="proxyTargetClass" value="true"/>					<!-- 代理目标类（默认为 false，代理接口） -->
+    </bean>
+
+	<!-- com.spring.demo09 -->
+	<bean id="greetingAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="greetingAroundAdvice49"/>
+        <property name="pattern" value="com.spring.demo9.GreetingImplAdvisor.good.*"/>
+    </bean>
+
+	<!-- com.spring.demo09 -->
+    <bean id="greetingProxyAdvisor" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="greetingImplAdvisor"/>
+        <property name="interceptorNames" value="greetingAdvisor"/>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+    
+    <!-- com.spring.demo10 -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="*ImplScan"/>
+        <property name="interceptorNames" value="greetingAroundAdviceScan"/>
+        <property name="optimize" value="true"/>
     </bean>
 
 </beans>
