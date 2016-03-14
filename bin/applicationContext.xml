@@ -14,6 +14,7 @@
 	<context:component-scan base-package="com.spring.demo08" />
 	<context:component-scan base-package="com.spring.demo09" />
 	<context:component-scan base-package="com.spring.demo10" />
+	<context:component-scan base-package="com.spring.demo11" />
 
 	<!-- com.spring.test -->
 	<bean id="theAction" class="com.spring.test.UpperAction" abstract="false"
@@ -73,16 +74,18 @@
     </bean>
 
 	<!-- com.spring.demo09 -->
+	<!-- 配置一个切面 -->
 	<bean id="greetingAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
-        <property name="advice" ref="greetingAroundAdvice49"/>
-        <property name="pattern" value="com.spring.demo9.GreetingImplAdvisor.good.*"/>
+        <property name="advice" ref="greetingAroundAdvice49"/>								<!-- 使用 greetingAroundAdvice49 通知 -->
+        <property name="pattern" value="com.spring.demo09.GreetingImplAdvisor.good.*"/>		<!-- 切点（正则表达式） -->
     </bean>
 
 	<!-- com.spring.demo09 -->
+	<!-- 配置一个代理 -->
     <bean id="greetingProxyAdvisor" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="target" ref="greetingImplAdvisor"/>
-        <property name="interceptorNames" value="greetingAdvisor"/>
-        <property name="proxyTargetClass" value="true"/>
+        <property name="target" ref="greetingImplAdvisor"/>				<!-- 目标类 -->
+        <property name="interceptorNames" value="greetingAdvisor"/>		<!-- 切面 -->
+        <property name="proxyTargetClass" value="true"/>				<!-- 代理目标类 -->
     </bean>
     
     <!-- com.spring.demo10 -->
