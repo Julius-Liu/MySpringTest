@@ -30,8 +30,9 @@
         <property name="target" ref="greetingImpl"/>
         <property name="interceptorNames">
             <list>
+            	<value>greetingAfterAdvice</value>
                 <value>greetingBeforeAdvice</value>
-                <value>greetingAfterAdvice</value>
+                
             </list>
         </property>
     </bean>
