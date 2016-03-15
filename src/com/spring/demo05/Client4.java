@@ -1,18 +1,17 @@
 package com.spring.demo05;
 
-import com.spring.api.Greeting;
+import org.aopalliance.aop.Advice;
 import org.springframework.aop.framework.ProxyFactory;
 
-/**
- * 5. Spring AOP：前置增强 + 后置增强（编程式）
- */
-public class Client1 {
+import com.spring.api.Greeting;
+
+public class Client4 {
 	public static void main(String[] args) {
         ProxyFactory proxyFactory = new ProxyFactory();
         proxyFactory.setTarget(new GreetingImpl());
-        proxyFactory.addAdvice(new GreetingBeforeAdvice());
-        proxyFactory.addAdvice(new GreetingAfterReturningAdvice());
+        proxyFactory.addAdvice(new GreetingAfterAdvice());
+
         Greeting greeting = (Greeting) proxyFactory.getProxy();
-        greeting.sayHello("Jack");        
+        greeting.sayHello("Jack");
     }
 }

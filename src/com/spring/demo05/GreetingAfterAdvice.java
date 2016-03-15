@@ -1,14 +1,13 @@
 package com.spring.demo05;
 
-import java.lang.reflect.Method;
-import org.springframework.aop.AfterReturningAdvice;
+import org.aspectj.lang.JoinPoint;
+import org.aopalliance.aop.Advice;
 
-public class GreetingAfterAdvice implements AfterReturningAdvice{
-
-	@Override
-	public void afterReturning(Object arg0, Method arg1, Object[] arg2,
-			Object arg3) throws Throwable {
-		System.out.println("This is GreetingAfterAdvice AfterReturning");
-	}
-
+public class GreetingAfterAdvice implements Advice{
+	
+	public void after(JoinPoint jp) throws Throwable {
+        System.out.println("ProxyFactory Driven: After executing " + 
+        		jp.getSignature().getName()+ "()");
+        
+    }
 }
