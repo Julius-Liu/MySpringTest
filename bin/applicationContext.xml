@@ -39,7 +39,7 @@
 	
 	<!-- com.spring.demo06 for Client2 -->
 	<bean id="greetingProxyClient2" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="interfaces" value="com.spring.api.Greeting"/>
+        <property name="interfaces" value="com.spring.api.Greeting"/>	<!-- 需要代理的接口 -->
         <property name="target" ref="greetingImpl"/>
         <property name="interceptorNames">
             <list>
@@ -50,7 +50,7 @@
 	
 	<!-- com.spring.demo06 for Client3 -->
 	<bean id="greetingProxyClient3" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="interfaces" value="com.spring.api.Greeting"/>	<!-- 需要代理的接口 -->
+        <!--<property name="interfaces" value="com.spring.api.Greeting"/>	 需要代理的接口 -->
         <property name="target" ref="greetingImpl"/>					<!-- 接口实现类 -->
         <property name="interceptorNames">								<!-- 拦截器名称（也就是增强类名称，Spring Bean 的 id） -->
             <list>
@@ -84,16 +84,16 @@
 	<!-- com.spring.demo09 -->
 	<!-- 配置一个代理 -->
     <bean id="greetingProxyAdvisor" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="target" ref="greetingImplAdvisor"/>				<!-- 目标类 -->
-        <property name="interceptorNames" value="greetingAdvisor"/>		<!-- 切面 -->
+        <property name="target" ref="greetingImplAdvisor"/>				<!-- 接口实现类 -->
+        <property name="interceptorNames" value="greetingAdvisor"/>		<!-- 刚才配置的切面 -->
         <property name="proxyTargetClass" value="true"/>				<!-- 代理目标类 -->
     </bean>
     
     <!-- com.spring.demo10 -->
     <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-        <property name="beanNames" value="*ImplScan"/>
-        <property name="interceptorNames" value="greetingAroundAdviceScan"/>
-        <property name="optimize" value="true"/>
+        <property name="beanNames" value="*ImplScan"/>							<!-- 只为后缀是“ImplScan”的  Bean 生成代理 -->
+        <property name="interceptorNames" value="greetingAroundAdviceScan"/>	<!-- 拦截器名称 -->
+        <property name="optimize" value="true"/>								<!-- 是否对代理生成策略进行优化 -->
     </bean>
 
 </beans>

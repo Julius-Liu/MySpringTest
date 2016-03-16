@@ -12,7 +12,10 @@ public class Client {
         GreetingImplAdvisor greetingImplAdvisor = (GreetingImplAdvisor) context.getBean("greetingProxyAdvisor");
 
         greetingImplAdvisor.sayHello("Jack");
+        System.out.println();
         greetingImplAdvisor.goodMorning("Jack");
+        System.out.println();
         greetingImplAdvisor.goodNight("Jack");
+        System.out.println();
     }
 }

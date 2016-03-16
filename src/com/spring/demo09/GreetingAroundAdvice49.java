@@ -11,8 +11,7 @@ public class GreetingAroundAdvice49 implements MethodInterceptor{
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		before();
         Object result = invocation.proceed();
-        after();
-        System.out.println();
+        after();        
         return result;
 	}
 
