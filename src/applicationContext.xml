@@ -9,7 +9,6 @@
 		http://www.springframework.org/schema/context
     	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.spring.demo06" />
 	<context:component-scan base-package="com.spring.demo07" />
 	<context:component-scan base-package="com.spring.demo08" />
 	<context:component-scan base-package="com.spring.demo09" />
@@ -22,42 +21,7 @@
 		<property name="message">
 			<value type="java.lang.String">Hello_</value>
 		</property>
-	</bean>
-	
-	<!-- com.spring.demo06 for Client1 -->
-	<bean id="greetingProxyClient1" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="interfaces" value="com.spring.api.Greeting"/>
-        <property name="target" ref="greetingImpl"/>
-        <property name="interceptorNames">
-            <list>
-            	<value>greetingAfterAdvice</value>
-                <value>greetingBeforeAdvice</value>
-                
-            </list>
-        </property>
-    </bean>
-	
-	<!-- com.spring.demo06 for Client2 -->
-	<bean id="greetingProxyClient2" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="interfaces" value="com.spring.api.Greeting"/>	<!-- 需要代理的接口 -->
-        <property name="target" ref="greetingImpl"/>
-        <property name="interceptorNames">
-            <list>
-                <value>greetingBeforeAndAfterAdvice</value>
-            </list>
-        </property>
-    </bean>
-	
-	<!-- com.spring.demo06 for Client3 -->
-	<bean id="greetingProxyClient3" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <!--<property name="interfaces" value="com.spring.api.Greeting"/>	 需要代理的接口 -->
-        <property name="target" ref="greetingImpl"/>					<!-- 接口实现类 -->
-        <property name="interceptorNames">								<!-- 拦截器名称（也就是增强类名称，Spring Bean 的 id） -->
-            <list>
-                <value>greetingAroundAdvice</value>
-            </list>
-        </property>
-    </bean>
+	</bean>		
 
 	<!-- com.spring.demo07 -->
     <bean id="greetingProxyThrows" class="org.springframework.aop.framework.ProxyFactoryBean">

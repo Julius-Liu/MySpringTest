@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class Client2 {
 	public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("resource/springDemo06_2.xml");
         Greeting greeting = (Greeting) context.getBean("greetingProxyClient2");
         greeting.sayHello("Jack");
     }
