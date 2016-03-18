@@ -8,6 +8,5 @@ public class GreetingAfterAdvice implements Advice{
 	public void after(JoinPoint jp) throws Throwable {
         System.out.println("ProxyFactory Driven: After executing " + 
         		jp.getSignature().getName()+ "()");
-        
     }
 }

@@ -9,4 +9,12 @@ import org.springframework.stereotype.Component;
 public class GreetingAspect {
 	@DeclareParents(value = "com.spring.demo14.GreetingImpl", defaultImpl = ApologyImpl.class)
     private Apology apology;
+
+	public Apology getApology() {
+		return apology;
+	}
+
+	public void setApology(Apology apology) {
+		this.apology = apology;
+	}
 }

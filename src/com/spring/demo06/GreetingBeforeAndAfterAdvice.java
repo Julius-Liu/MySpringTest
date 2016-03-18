@@ -5,10 +5,10 @@ import org.springframework.aop.AfterReturningAdvice;
 import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.stereotype.Component;
 
-@Component
 /*
  * 同时 implements Before and After
  */
+@Component
 public class GreetingBeforeAndAfterAdvice implements MethodBeforeAdvice, AfterReturningAdvice{
 
 	@Override
