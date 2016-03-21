@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<context:component-scan base-package="com.spring.demo12" />
-
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+    <aop:aspectj-autoproxy proxy-target-class="false"/>
     
 </beans>

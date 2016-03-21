@@ -17,10 +17,10 @@ public class GreetingAspect {
     }
 
     private void before() {
-        System.out.println("Before");
+        System.out.println("This is demo12 Before");
     }
 
     private void after() {
-        System.out.println("After");
+        System.out.println("This is demo12 After");
     }
 }
