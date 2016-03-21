@@ -10,8 +10,9 @@ public class Client {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("resource/springDemo16.xml");
 		EmployeeService employeeService = (EmployeeService) ctx.getBean("employeeService");
 		
-		//Employee employee01 = new Employee();
-		//employeeService.setEmployee(employee01);
+		Employee employee01 = new Employee();
+		employee01.setEmpName("Julius");
+		employeeService.setEmployee(employee01);
 		String getEmpNameRes = employeeService.getEmployee().getEmpName();
 		System.out.println(getEmpNameRes);
 		

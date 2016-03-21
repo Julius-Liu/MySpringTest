@@ -11,9 +11,9 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- Configure Employee Bean and initialize it -->
-	<bean name="Employee" class="com.spring.model.Employee">
+<!-- 	<bean name="Employee" class="com.spring.model.Employee">
 		<property name="empName" value="Dummy Name"></property>
-	</bean>
+	</bean> -->
 
 	<!-- Configure EmployeeService bean -->
 <!-- 	<bean name="EmployeeService" class="com.spring.service.EmployeeService">
@@ -27,6 +27,6 @@
 	<context:component-scan base-package="com.spring.model" />
 	<context:component-scan base-package="com.spring.service" />
 	
-	<aop:aspectj-autoproxy />
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
 </beans>
