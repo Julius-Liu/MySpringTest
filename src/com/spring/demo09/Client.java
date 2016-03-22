@@ -8,14 +8,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class Client {
 	public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("resource/springDemo09.xml");
         GreetingImplAdvisor greetingImplAdvisor = (GreetingImplAdvisor) context.getBean("greetingProxyAdvisor");
 
-        greetingImplAdvisor.sayHello("Jack");
+        greetingImplAdvisor.sayHello("Jack without advice");
         System.out.println();
-        greetingImplAdvisor.goodMorning("Jack");
+        greetingImplAdvisor.goodMorning("Julius with advice");
         System.out.println();
-        greetingImplAdvisor.goodNight("Jack");
+        greetingImplAdvisor.goodNight("Jenny with advice");
         System.out.println();
     }
 }

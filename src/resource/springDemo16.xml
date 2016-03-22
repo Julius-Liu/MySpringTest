@@ -11,22 +11,26 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- Configure Employee Bean and initialize it -->
-<!-- 	<bean name="Employee" class="com.spring.model.Employee">
-		<property name="empName" value="Dummy Name"></property>
-	</bean> -->
+	<bean name="employee" class="com.spring.model.Employee">
+		<property name="empName" value="Demo16"></property>
+	</bean>
 
 	<!-- Configure EmployeeService bean -->
-<!-- 	<bean name="EmployeeService" class="com.spring.service.EmployeeService">
-		<property name="Employee" ref="Employee"></property>
-	</bean> -->
+	<bean name="employeeService" class="com.spring.service.EmployeeService">
+		<property name="employee" ref="employee"></property>
+	</bean>
 	
 	<!-- Spring 环绕通知 -->
 	<!-- <bean name="greetingAroundAspect" class="com.spring.demo16.GreetingAroundAspect" /> -->
 	
-	<context:component-scan base-package="com.spring.demo16" />
-	<context:component-scan base-package="com.spring.model" />
-	<context:component-scan base-package="com.spring.service" />
+	<bean class="com.spring.demo16.GreetingAroundAspect" />
 	
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<!-- <context:component-scan base-package="com.spring.demo16" /> -->
+	
+	<!-- 	<context:component-scan base-package="com.spring.model" />
+	<context:component-scan base-package="com.spring.service" /> -->
+	
+	<!-- <aop:aspectj-autoproxy proxy-target-class="true"/> -->
+	<aop:aspectj-autoproxy proxy-target-class="false"/>
 	
 </beans>

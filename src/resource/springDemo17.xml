@@ -12,7 +12,7 @@
 
 	<!-- Configure Employee Bean and initialize it -->
 	<bean name="employee" class="com.spring.model.Employee">
-		<property name="empName" value="Demo16"></property>
+		<property name="empName" value="Demo17"></property>
 	</bean>
 
 	<!-- Configure EmployeeService bean -->
@@ -20,17 +20,8 @@
 		<property name="employee" ref="employee"></property>
 	</bean>
 	
-	<!-- Spring 环绕通知 -->
-	<!-- <bean name="greetingAroundAspect" class="com.spring.demo16.GreetingAroundAspect" /> -->
+	<bean class="com.spring.demo17.GreetingBeforeAspect" />
 	
-	<bean class="com.spring.demo16.GreetingAroundAspect" />
-	
-	<!-- <context:component-scan base-package="com.spring.demo16" /> -->
-	
-	<!-- 	<context:component-scan base-package="com.spring.model" />
-	<context:component-scan base-package="com.spring.service" /> -->
-	
-	<!-- <aop:aspectj-autoproxy proxy-target-class="true"/> -->
 	<aop:aspectj-autoproxy proxy-target-class="false"/>
 	
 </beans>

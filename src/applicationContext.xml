@@ -9,12 +9,6 @@
 		http://www.springframework.org/schema/context
     	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.spring.demo07" />
-	<context:component-scan base-package="com.spring.demo08" />
-	<context:component-scan base-package="com.spring.demo09" />
-	<context:component-scan base-package="com.spring.demo10" />
-	<context:component-scan base-package="com.spring.demo11" />
-
 	<!-- com.spring.test -->
 	<bean id="theAction" class="com.spring.test.UpperAction" abstract="false"
 		lazy-init="default" autowire="default">
@@ -22,42 +16,5 @@
 			<value type="java.lang.String">Hello_</value>
 		</property>
 	</bean>		
-
-	<!-- com.spring.demo07 -->
-    <bean id="greetingProxyThrows" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="interfaces" value="com.spring.api.Greeting"/>
-        <property name="target" ref="greetingImplThrows"/>
-        <property name="interceptorNames" value="greetingThrowAdvice"/>
-    </bean>	
-    
-    <!-- com.spring.demo08 -->
-    <bean id="greetingProxySorry" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="interfaces" value="com.spring.demo08.Apology"/>		<!-- 需要动态实现的接口 -->
-        <property name="target" ref="greetingImplSorry"/>					<!-- 目标类 -->
-        <property name="interceptorNames" value="greetingIntroAdvice"/>		<!-- 引入增强 -->
-        <property name="proxyTargetClass" value="true"/>					<!-- 代理目标类（默认为 false，代理接口） -->
-    </bean>
-
-	<!-- com.spring.demo09 -->
-	<!-- 配置一个切面 -->
-	<bean id="greetingAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
-        <property name="advice" ref="greetingAroundAdvice49"/>								<!-- 使用 greetingAroundAdvice49 通知 -->
-        <property name="pattern" value="com.spring.demo09.GreetingImplAdvisor.good.*"/>		<!-- 切点（正则表达式） -->
-    </bean>
-
-	<!-- com.spring.demo09 -->
-	<!-- 配置一个代理 -->
-    <bean id="greetingProxyAdvisor" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="target" ref="greetingImplAdvisor"/>				<!-- 接口实现类 -->
-        <property name="interceptorNames" value="greetingAdvisor"/>		<!-- 刚才配置的切面 -->
-        <property name="proxyTargetClass" value="true"/>				<!-- 代理目标类 -->
-    </bean>
-    
-    <!-- com.spring.demo10 -->
-    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-        <property name="beanNames" value="*ImplScan"/>							<!-- 只为后缀是“ImplScan”的  Bean 生成代理 -->
-        <property name="interceptorNames" value="greetingAroundAdviceScan"/>	<!-- 拦截器名称 -->
-        <property name="optimize" value="true"/>								<!-- 是否对代理生成策略进行优化 -->
-    </bean>
 
 </beans>

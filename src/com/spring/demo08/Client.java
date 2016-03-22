@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Client {
 	
 	public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("resource/springDemo08.xml");
         GreetingImplSorry greetingImplSorry = (GreetingImplSorry) context.getBean("greetingProxySorry");
         greetingImplSorry.sayHello("Jack");
 

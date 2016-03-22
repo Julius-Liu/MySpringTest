@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class GreetingAroundAspect {
-	@Around("execution(* com.spring.model.Employee.getEmpName())")
+	@Around("execution(* com.spring.model.Employee.get*())")
 	public Object employeeAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
-		System.out.println("Before invoking getEmpName() method");
+		
+		//before();
+		/*
 		Object value = null;
 		try {
 			value = proceedingJoinPoint.proceed();
@@ -19,5 +21,15 @@ public class GreetingAroundAspect {
 		}
 		System.out.println("After invoking getEmpName() method. Return value = " + value);
 		return value;
+		*/
+		
+		// Shortcut JoinPoint method
+		System.out.println(this.getClass().toString() + " - Shortcut JoinPoint method");
+		return null;
+		
+	}
+	
+	private void before() {
+		System.out.println("Before invoking getEmpName() method - before()");
 	}
 }

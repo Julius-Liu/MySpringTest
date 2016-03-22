@@ -1,4 +1,4 @@
-package com.spring.demo16;
+package com.spring.demo17;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -7,7 +7,7 @@ import com.spring.service.EmployeeService;
 
 public class Client {
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("resource/springDemo16.xml");
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("resource/springDemo17.xml");
 		//EmployeeService employeeService = (EmployeeService) ctx.getBean("employeeService");
 		
 		//Employee employee01 = new Employee();
