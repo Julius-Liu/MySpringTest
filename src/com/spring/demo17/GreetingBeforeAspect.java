@@ -15,9 +15,16 @@ public class GreetingBeforeAspect {
 	}
 	*/
 	
-	@Before("execution(* com.spring.model.Employee.get*())")
+	//@Before("execution(* com.spring.model.Employee.get*())")
+	/*
 	public Object employeeBeforeAdviceShortcut() {
-		System.out.println(this.getClass().toString() + " - - Shortcut JoinPoint method");
+		System.out.println(this.getClass().toString() + " - Shortcut JoinPoint method");
 		return null;
 	}
+	*/
+	
+	@Before("execution(* com.spring.model.Employee.setEmpId(..)) && args(empId)")
+	public void employeeBeforeAdvice01(String empId) {
+		System.out.println("Parameters: " + empId);
+	}	
 }

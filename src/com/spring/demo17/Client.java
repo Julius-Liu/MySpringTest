@@ -18,8 +18,9 @@ public class Client {
 		//System.out.println(getEmpNameRes);
 		
 		Employee employee = (Employee) ctx.getBean("employee");
-		String result = employee.getEmpName();
-		System.out.println("JoinPoint method return value is: " + result);
+		//String result = employee.getEmpName();
+		//System.out.println("JoinPoint method return value is: " + result);
+		employee.setEmpId("Robell");
 		ctx.close();
 	}
 }

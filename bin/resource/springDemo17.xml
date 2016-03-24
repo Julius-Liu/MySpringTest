@@ -12,7 +12,8 @@
 
 	<!-- Configure Employee Bean and initialize it -->
 	<bean name="employee" class="com.spring.model.Employee">
-		<property name="empName" value="Demo17"></property>
+		<property name="empId" value="Demo17Id"></property>
+		<property name="empName" value="Demo17Name"></property>
 	</bean>
 
 	<!-- Configure EmployeeService bean -->
@@ -20,7 +21,7 @@
 		<property name="employee" ref="employee"></property>
 	</bean>
 	
-	<bean class="com.spring.demo17.GreetingBeforeAspect" />
+	<bean name="greetingBeforeAspect" class="com.spring.demo17.GreetingBeforeAspect" />
 	
 	<aop:aspectj-autoproxy proxy-target-class="false"/>
 	
