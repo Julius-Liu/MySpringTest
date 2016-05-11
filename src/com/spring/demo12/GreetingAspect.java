@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class GreetingAspect {
-	@Around("execution(* com.spring.demo12.GreetingImpl.*(..))")
-    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+	@Around("execution(* com.spring.demo12.GreetingImpl.*(..)) && args(name)")
+    public Object around(ProceedingJoinPoint pjp, String name) throws Throwable {
         before();
         Object result = pjp.proceed();
+        System.out.println("args, name:" + name);
         after();
         return result;
     }

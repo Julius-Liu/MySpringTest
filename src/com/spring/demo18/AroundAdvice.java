@@ -1,9 +1,9 @@
-package com.spring.demo05;
+package com.spring.demo18;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
-public class GreetingAroundAdvice implements MethodInterceptor {
+public class AroundAdvice implements MethodInterceptor {
 
 	@Override
 	public Object invoke(MethodInvocation invocation) throws Throwable {
